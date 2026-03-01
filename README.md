@@ -2,11 +2,11 @@ FinUnity Web
 
 O FinUnity Web é a versão web do sistema financeiro FinUnity, desenvolvida com Spring Boot + Thymeleaf, integrando backend robusto com renderização dinâmica de páginas HTML.
 
-Este projeto representa minha evolução no desenvolvimento web com Java, aplicando arquitetura MVC, organização em camadas e integração com banco de dados PostgreSQL.
+Este projeto representa minha evolução no desenvolvimento web com Java, aplicando arquitetura MVC, organização em camadas e integração com banco de dados MySQL.
 
 Tecnologias Utilizadas
 
-Java 17+
+Java 25+
 
 Spring Boot
 
@@ -16,7 +16,7 @@ Spring Data JPA
 
 Thymeleaf
 
-PostgreSQL
+MySQL
 
 Maven
 
