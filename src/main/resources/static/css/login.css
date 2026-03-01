@@ -1,0 +1,104 @@
+/* RESET GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FUNDO DA PÁGINA */
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #2b2f4b, #1f2235);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CARD DO LOGIN */
+.login-card {
+  position: relative;                 /* referência da logo */
+  width: 360px;
+  padding: 60px 40px 40px;            /* espaço extra no topo */
+  background: #3a3d55;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+}
+
+/* LOGO FLUTUANTE */
+.logo-floating {
+  position: absolute;
+  top: -45px;                         /* controla quanto sai do card */
+  left: 50%;
+  transform: translateX(-50%);             /* mesmo fundo do card */
+  padding: 14px;
+ 
+}
+
+/* IMAGEM DA LOGO */
+.logo-floating img {
+  width: 120px;                        /* ajuste livre */
+    height: auto;
+    margin: -50px;
+}
+
+/* TÍTULO */
+.login-card h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* LABELS */
+.login-card label {
+  display: block;
+  text-align: left;
+  margin: 12px 0 4px;
+  font-size: 13px;
+  color: #cfd2ff;
+}
+
+/* INPUTS */
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* BOTÃO */
+.login-card button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  background: #e5e5e5;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-card button:hover {
+  background: #ffffff;
+}
+
+/* TEXTO EXTRA (ex: manter logado) */
+.login-card .extra {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #cfd2ff;
+}
+
+/* ERRO */
+.erro {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 13px;
+}

@@ -1,0 +1,28 @@
+<div th:fragment="topbar">
+    <header class="topbar">
+        <div>
+			<!-- Ícone Notificação -->
+								<svg xmlns="http://www.w3.org/2000/svg" 
+								     width="22" height="22" 
+								     fill="currentColor" 
+								     viewBox="0 0 16 16">
+								  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.104-14.804A1 1 0 0 0 7 2v.278C5.555 2.5 4 4.24 4 6v3.586l-.707.707A1 1 0 0 0 4 12h8a1 1 0 0 0 .707-1.707L12 9.586V6c0-1.76-1.555-3.5-3-3.722V2a1 1 0 0 0-.896-.804z"/>
+								</svg>
+								
+		</div>
+
+        <div class="user-info">
+			<!-- Ícone Usuário -->
+												<svg xmlns="http://www.w3.org/2000/svg" 
+												     width="22" height="22" 
+												     fill="currentColor" 
+												     viewBox="0 0 16 16">
+												  <path d="M8 8a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0 1c-2.33 0-7 1.17-7 3.5V14h14v-1.5C15 10.17 10.33 9 8 9z"/>
+												</svg>
+            Olá,
+            <span th:text="${session.usuarioLogado.nome}">Usuário</span>
+            |
+            <a th:href="@{/logout}">Sair</a>
+        </div>
+    </header>
+</div>

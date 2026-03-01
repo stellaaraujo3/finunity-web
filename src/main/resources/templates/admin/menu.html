@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FinUnity - Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-floating">
+            <img th:src="@{/images/logo_FinUnity.png}" alt="FinUnity logo">
+        </div>
+
+        <nav>
+            <a th:href="@{/admin/menu}" class="active">Dashboard</a>
+            <a th:href="@{/admin/movimentacoes}">Movimentações</a>
+            <a th:href="@{/admin/usuarios/novo}">Cadastrar Usuário</a>
+            <a href="#">Relatórios</a>
+            <a href="#">Configurações</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div>
+                <!-- Ícone Notificação -->
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="22" height="22"
+                     fill="currentColor"
+                     viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.104-14.804A1 1 0 0 0 7 2v.278C5.555 2.5 4 4.24 4 6v3.586l-.707.707A1 1 0 0 0 4 12h8a1 1 0 0 0 .707-1.707L12 9.586V6c0-1.76-1.555-3.5-3-3.722V2a1 1 0 0 0-.896-.804z"/>
+                </svg>
+            </div>
+
+            <div class="user-info">
+                <!-- Ícone Usuário -->
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="22" height="22"
+                     fill="currentColor"
+                     viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0 1c-2.33 0-7 1.17-7 3.5V14h14v-1.5C15 10.17 10.33 9 8 9z"/>
+                </svg>
+
+                Olá,
+                <span th:text="${session.usuarioLogado.nome}">Usuário</span>
+                |
+                <a th:href="@{/logout}">Sair</a>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- CARDS -->
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Saldo Atual</h3>
+                    <p th:text="'R$ ' + ${#numbers.formatDecimal(saldo, 1, 'POINT', 2, 'COMMA')}">
+                        R$ 0,00
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Entradas</h3>
+                    <p th:text="'R$ ' + ${#numbers.formatDecimal(entradas, 1, 'POINT', 2, 'COMMA')}"></p>
+                </div>
+
+                <div class="card">
+                    <h3>Saídas</h3>
+                    <p th:text="'R$ ' + ${#numbers.formatDecimal(saidas, 1, 'POINT', 2, 'COMMA')}"></p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-row">
+
+                <!-- GRÁFICO -->
+                <div class="chart-box">
+                    <h4>Movimentações por Mês</h4>
+                    <canvas id="graficoLinha"></canvas>
+                </div>
+
+                <!-- TABELA -->
+                <div class="transactions-box">
+
+                    <div class="transactions-header">
+                        <h4>Últimas Transações</h4>
+                    </div>
+
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descrição</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="mov : ${movimentacoes}">
+                                <td th:text="${mov.id}"></td>
+                                <td th:text="${mov.descricao}"></td>
+                                <td th:text="${mov.cliente}"></td>
+                                <td th:text="'R$ ' + ${#numbers.formatDecimal(mov.valor, 1, 'POINT', 2, 'COMMA')}"></td>
+                                <td th:text="${#temporals.format(mov.data, 'dd/MM/yyyy')}"></td>
+                                <td>
+                                    <a th:href="@{/admin/movimentacoes}">
+                                        <button class="btn-view">Ver</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script th:inline="javascript">
+    const dados = [[${valoresPorMes}]] || {};
+
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                   "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+    const valores = [];
+
+    for (let i = 1; i <= 12; i++) {
+        valores.push(dados[i] ? dados[i] : 0);
+    }
+
+    const ctx = document.getElementById('graficoLinha');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: meses,
+            datasets: [{
+                data: valores,
+                borderColor: '#dc2626',
+                backgroundColor: 'rgba(220,38,38,0.15)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+        }
+    });
+</script>
+
+</body>
+</html>

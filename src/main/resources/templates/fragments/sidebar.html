@@ -1,0 +1,17 @@
+<div th:fragment="sidebar">
+    <aside class="sidebar">
+
+        <div class="logo-floating">
+            <img th:src="@{/images/logo_FinUnity.png}" alt="FinUnity logo">
+        </div>
+
+        <nav>
+            <a th:href="@{/admin/menu}">Dashboard</a>
+            <a th:href="@{/admin/movimentacoes}">Movimentações</a>
+            <a th:href="@{/admin/usuarios/novo}">Cadastrar Usuário</a>
+            <a href="#">Relatórios</a>
+            <a href="#">Configurações</a>
+        </nav>
+
+    </aside>
+</div>
