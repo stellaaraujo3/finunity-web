@@ -34,13 +34,13 @@ Templates (Thymeleaf) → Renderização dinâmica do HTML
 
 Funcionalidades Implementadas
 
-✔ Dashboard dinâmico
-✔ Listagem de movimentações financeiras
-✔ Integração backend + frontend
-✔ Renderização de tabelas com th:each
-✔ Uso de th:text, th:href, th:if
-✔ Comunicação direta com PostgreSQL
-✔ Estrutura preparada para autenticação e controle de acesso
+Dashboard dinâmico
+Listagem de movimentações financeiras
+Integração backend + frontend
+Renderização de tabelas com th:each
+Uso de th:text, th:href, th:if
+Comunicação direta com PostgreSQL
+Estrutura preparada para autenticação e controle de acesso
 
 Objetivo
 
